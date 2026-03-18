@@ -1,0 +1,92 @@
+{
+  "name": "Nguyễn Hoàng Chí Vĩ",
+  "role": "Front-end Developer",
+  "tagline": "Building performant web experiences with React & Next.js",
+  "available": true,
+  "contact": {
+    "email": "nguyenhoangchivi@gmail.com",
+    "phone": "0326574849",
+    "location": "Ho Chi Minh City",
+    "github": "https://github.com/ChiVi123"
+  },
+  "about": "Front-end developer focused on building high-quality, optimised web products. Passionate about modern tooling and growing into a well-rounded engineer who delivers real value to teams and users.",
+  "skills": [
+    {
+      "group": "Languages & Frameworks",
+      "items": [
+        { "label": "TypeScript", "variant": "accent" },
+        { "label": "React", "variant": "accent" },
+        { "label": "Next.js", "variant": "accent" },
+        { "label": "JavaScript ES6+", "variant": "solid" },
+        { "label": "Express.js", "variant": "solid" }
+      ]
+    },
+    {
+      "group": "UI & Styling",
+      "items": [
+        { "label": "TailwindCSS", "variant": "solid" },
+        { "label": "Shadcn UI", "variant": "solid" },
+        { "label": "Ant Design", "variant": "solid" },
+        { "label": "MUI", "variant": "solid" },
+        { "label": "Flowbite", "variant": "solid" }
+      ]
+    },
+    {
+      "group": "State & Data",
+      "items": [
+        { "label": "Redux Toolkit", "variant": "solid" },
+        { "label": "Context API", "variant": "solid" },
+        { "label": "SQL", "variant": "solid" },
+        { "label": "NoSQL", "variant": "solid" }
+      ]
+    },
+    {
+      "group": "Tooling",
+      "items": [
+        { "label": "Git", "variant": "outline" },
+        { "label": "Figma", "variant": "outline" },
+        { "label": "Firebase", "variant": "outline" },
+        { "label": "Postman", "variant": "outline" },
+        { "label": "VS Code", "variant": "outline" }
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "title": "Intern Front-end Developer",
+      "company": "FPT Software",
+      "period": "02/2025 — 08/2025",
+      "bullets": [
+        "Converted Figma designs to pixel-perfect web interfaces per client specs",
+        "Upgraded management dashboard to improve administrative workflows",
+        "Collaborated in a 4-person team using Git for version control"
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "name": "Pha Phim — Movie Streaming Platform",
+      "description": "Online streaming app with 10,000+ titles, HLS video playback via Hls.js, and global search state via Context API.",
+      "stack": ["React", "TypeScript", "Hls.js", "Shadcn UI"],
+      "demo": "https://pha-phim.onrender.com/",
+      "github": "https://github.com/ChiVi123/pha-phim",
+      "period": "11/2024 — 12/2024"
+    },
+    {
+      "name": "MERN Blog — Personal Blog App",
+      "description": "Full-stack blog with JWT auth, Admin CRUD dashboard for posts & comments, Firebase Storage and Redux Toolkit state management.",
+      "stack": ["React", "Node.js", "Express", "MongoDB", "Redux"],
+      "demo": "https://mern-blog-web-q1bu.onrender.com/",
+      "github": "https://github.com/ChiVi123/mern-blog-web",
+      "period": "10/2024 — 11/2024"
+    }
+  ],
+  "education": [
+    {
+      "school": "HCMUTE",
+      "fullName": "University of Technology and Education (HCMUTE)",
+      "degree": "B.Sc Software Engineering",
+      "period": "09/2019 — 04/2024"
+    }
+  ]
+}
