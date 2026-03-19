@@ -1,11 +1,11 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { SectionLabel } from '~/components/ui/section-label'
+import { ExternalIcon, GithubIcon } from '~/components/ui/icons'
 import { MotionSection } from '~/components/ui/motion-section'
-import { GithubIcon, ExternalIcon } from '~/components/ui/icons'
+import { SectionLabel } from '~/components/ui/section-label'
 import { fadeUp, scaleIn, stagger } from '~/lib/motion'
-import type { Project } from '~/types/cv'
+import type { OGMeta, Project } from '~/types/cv'
 
 interface ProjectsSectionProps {
   projects: Project[]
@@ -33,6 +33,9 @@ export function ProjectsSection({ projects }: ProjectsSectionProps) {
 }
 
 function ProjectCard({ project }: { project: Project }) {
+  const og = project.og
+  const hasOG = !!(og?.image || og?.title || og?.description)
+
   return (
     <motion.div
       className="proj-card card"
@@ -51,6 +54,9 @@ function ProjectCard({ project }: { project: Project }) {
         transition={{ duration: 0.6, ease: 'easeInOut' }}
       />
 
+      {/* OG image preview */}
+      {hasOG && og?.image && <OGPreview og={og} demoUrl={project.demo} />}
+
       <div className="proj-card__header">
         <div>
           <div className="proj-card__name">{project.name}</div>
@@ -59,6 +65,11 @@ function ProjectCard({ project }: { project: Project }) {
       </div>
 
       <p className="proj-card__desc">{project.description}</p>
+
+      {/* OG description as quote if different from project description */}
+      {hasOG && og?.description && og.description !== project.description && (
+        <OGDescriptionQuote description={og.description} siteName={og.siteName} />
+      )}
 
       <motion.div className="proj-card__stack" variants={stagger(0.04)}>
         {project.stack.map((s) => (
@@ -76,7 +87,9 @@ function ProjectCard({ project }: { project: Project }) {
       <div className="proj-card__links">
         {project.demo && (
           <motion.a
-            href={project.demo} target="_blank" rel="noreferrer"
+            href={project.demo}
+            target="_blank"
+            rel="noreferrer"
             className="proj-link proj-link--primary"
             whileHover={{ scale: 1.03, background: 'var(--accent-dim)' }}
             whileTap={{ scale: 0.97 }}
@@ -86,7 +99,9 @@ function ProjectCard({ project }: { project: Project }) {
         )}
         {project.github && (
           <motion.a
-            href={project.github} target="_blank" rel="noreferrer"
+            href={project.github}
+            target="_blank"
+            rel="noreferrer"
             className="proj-link proj-link--secondary"
             whileHover={{ scale: 1.03, color: 'var(--accent)', borderColor: 'var(--border-hover)' }}
             whileTap={{ scale: 0.97 }}
@@ -140,5 +155,120 @@ function ProjectCard({ project }: { project: Project }) {
         .proj-link--secondary { color: var(--text-muted); border: 1px solid var(--border); }
       `}</style>
     </motion.div>
+  )
+}
+
+function OGPreview({ og, demoUrl }: { og: OGMeta; demoUrl?: string }) {
+  return (
+    <motion.a
+      href={demoUrl}
+      target="_blank"
+      rel="noreferrer"
+      className="og-preview"
+      initial={{ opacity: 0, y: 6 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, ease: 'easeOut' }}
+      whileHover={{ scale: 1.01 }}
+      style={{ display: 'block', position: 'relative', zIndex: 1, cursor: demoUrl ? 'pointer' : 'default' }}
+    >
+      <div className="og-preview__img-wrap">
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={og.image}
+          alt={og.title ?? 'Preview'}
+          className="og-preview__img"
+          loading="lazy"
+          onError={(e) => {
+            const el = e.currentTarget.closest('.og-preview') as HTMLElement | null
+            if (el) el.style.display = 'none'
+          }}
+        />
+        <div className="og-preview__overlay">
+          <div className="og-preview__badge">
+            <ExternalIcon />
+            <span>{og.siteName ?? new URL(demoUrl ?? 'https://example.com').hostname}</span>
+          </div>
+        </div>
+      </div>
+
+      {og.title && (
+        <div className="og-preview__meta">
+          <span className="og-preview__title">{og.title}</span>
+        </div>
+      )}
+
+      <style>{`
+        .og-preview {
+          border: 1px solid var(--border); border-radius: 8px; overflow: hidden;
+          background: var(--bg); transition: border-color 0.2s;
+          text-decoration: none;
+        }
+        .og-preview:hover { border-color: var(--border-hover); }
+        .og-preview__img-wrap {
+          position: relative; width: 100%; aspect-ratio: 1200/630; overflow: hidden;
+        }
+        .og-preview__img {
+          width: 100%; height: 100%; object-fit: cover;
+          display: block; transition: transform 0.4s ease;
+        }
+        .og-preview:hover .og-preview__img { transform: scale(1.03); }
+        .og-preview__overlay {
+          position: absolute; inset: 0;
+          background: linear-gradient(to top, rgba(8,12,16,0.7) 0%, transparent 50%);
+          display: flex; align-items: flex-end; padding: 10px 12px;
+        }
+        .og-preview__badge {
+          display: flex; align-items: center; gap: 5px;
+          background: rgba(0,240,255,0.12); border: 1px solid rgba(0,240,255,0.25);
+          border-radius: 4px; padding: 3px 8px;
+          color: var(--accent); font-size: 10px; font-family: var(--font-mono);
+          letter-spacing: 0.05em; backdrop-filter: blur(4px);
+        }
+        .og-preview__meta {
+          padding: 8px 12px 10px;
+          border-top: 1px solid var(--border);
+          background: var(--bg-card);
+        }
+        .og-preview__title {
+          font-size: 11px; color: var(--text-dim); font-family: var(--font-mono);
+          white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;
+        }
+      `}</style>
+    </motion.a>
+  )
+}
+
+function OGDescriptionQuote({ description, siteName }: { description: string; siteName?: string }) {
+  const truncated = description.length > 100 ? `${description.slice(0, 97)}…` : description
+
+  return (
+    <div className="og-quote">
+      <span className="og-quote__bar" />
+      <div className="og-quote__content">
+        {siteName && <span className="og-quote__source">{siteName}</span>}
+        <p className="og-quote__text">{truncated}</p>
+      </div>
+
+      <style>{`
+        .og-quote {
+          display: flex; gap: 10px; align-items: flex-start;
+          position: relative; z-index: 1;
+        }
+        .og-quote__bar {
+          flex-shrink: 0; width: 2px; background: var(--accent);
+          border-radius: 2px; margin-top: 2px; align-self: stretch;
+          opacity: 0.5;
+        }
+        .og-quote__content { display: flex; flex-direction: column; gap: 2px; }
+        .og-quote__source {
+          font-size: 10px; color: var(--accent); font-family: var(--font-mono);
+          letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7;
+        }
+        .og-quote__text {
+          font-size: 11px; color: var(--text-dim); font-family: var(--font-display);
+          line-height: 1.6; font-style: italic;
+        }
+      `}</style>
+    </div>
   )
 }

@@ -24,6 +24,14 @@ export interface Experience {
   bullets: string[]
 }
 
+export interface OGMeta {
+  title?: string
+  description?: string
+  image?: string
+  siteName?: string
+  url?: string
+}
+
 export interface Project {
   name: string
   description: string
@@ -31,6 +39,7 @@ export interface Project {
   demo?: string
   github?: string
   period: string
+  og?: OGMeta | null
 }
 
 export interface Education {
