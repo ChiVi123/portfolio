@@ -1,10 +1,25 @@
-node_modules/
+# deps
+node_modules
+.pnp
+.pnp.js
+
+# next
 .next/
 out/
+
+# production
+build/
 dist/
+
+# misc
+.DS_Store
+*.pem
 .env
 .env*.local
+
+# vercel
 .vercel
+
+# typescript
 *.tsbuildinfo
 next-env.d.ts
-.DS_Store

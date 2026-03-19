@@ -8,15 +8,12 @@ const GLITCH_CHARS = '!<>-_\\/[]{}—=+*^?#@$%&~'
 interface GlitchTextProps {
   text: string
   className?: string
-  /** 'hover' chỉ glitch khi hover | 'loop' tự động loop */
-  mode?: 'hover' | 'loop'
-  /** tốc độ (ms mỗi frame) */
   speed?: number
-  /** số lần lặp glitch trước khi resolve */
   iterations?: number
+  mode?: 'hover' | 'loop'
 }
 
-export function GlitchText({ text, className, mode = 'hover', speed = 40, iterations = 8 }: GlitchTextProps) {
+export function GlitchText({ text, className, speed = 35, iterations = 10, mode = 'hover' }: GlitchTextProps) {
   const [displayed, setDisplayed] = useState(text)
   const [isGlitching, setIsGlitching] = useState(false)
   const frameRef = useRef<ReturnType<typeof setTimeout> | null>(null)
@@ -28,18 +25,13 @@ export function GlitchText({ text, className, mode = 'hover', speed = 40, iterat
       setIsGlitching(false)
       return
     }
-
     setDisplayed(
-      text
-        .split('')
-        .map((char, idx) => {
-          if (idx < iterRef.current - iterations) return char
-          if (char === ' ') return ' '
-          return GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)]
-        })
-        .join(''),
+      text.split('').map((char, idx) => {
+        if (idx < iterRef.current - iterations) return char
+        if (char === ' ') return ' '
+        return GLITCH_CHARS[Math.floor(Math.random() * GLITCH_CHARS.length)]
+      }).join('')
     )
-
     iterRef.current += 0.5
     frameRef.current = setTimeout(scramble, speed)
   }, [text, iterations, speed])
@@ -52,20 +44,13 @@ export function GlitchText({ text, className, mode = 'hover', speed = 40, iterat
     scramble()
   }, [isGlitching, scramble])
 
-  // loop mode
   useEffect(() => {
     if (mode !== 'loop') return
     const interval = setInterval(startGlitch, 3000)
     return () => clearInterval(interval)
   }, [mode, startGlitch])
 
-  // cleanup
-  useEffect(
-    () => () => {
-      if (frameRef.current) clearTimeout(frameRef.current)
-    },
-    [],
-  )
+  useEffect(() => () => { if (frameRef.current) clearTimeout(frameRef.current) }, [])
 
   return (
     <span

@@ -65,7 +65,7 @@
   ],
   "projects": [
     {
-      "name": "Pha Phim — Movie Streaming Platform",
+      "name": "Pha Phim",
       "description": "Online streaming app with 10,000+ titles, HLS video playback via Hls.js, and global search state via Context API.",
       "stack": ["React", "TypeScript", "Hls.js", "Shadcn UI"],
       "demo": "https://pha-phim.onrender.com/",
@@ -73,7 +73,7 @@
       "period": "11/2024 — 12/2024"
     },
     {
-      "name": "MERN Blog — Personal Blog App",
+      "name": "MERN Blog",
       "description": "Full-stack blog with JWT auth, Admin CRUD dashboard for posts & comments, Firebase Storage and Redux Toolkit state management.",
       "stack": ["React", "Node.js", "Express", "MongoDB", "Redux"],
       "demo": "https://mern-blog-web-q1bu.onrender.com/",

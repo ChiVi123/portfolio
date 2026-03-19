@@ -2,9 +2,9 @@
 
 import { motion } from 'framer-motion'
 import { GlitchText } from '~/components/bits/glitch-text'
-import { Magnet } from '~/components/bits/magnet'
-import { SplitText } from '~/components/bits/split-text'
-import { fadeSide, fadeUp, staggerContainer } from '~/lib/motion'
+import { Typewriter } from '~/components/bits/typewriter'
+import { ChevronDownIcon, GithubIcon, LocationIcon, MailIcon, PhoneIcon } from '~/components/ui/icons'
+import { fadeUp, heroLine, scaleIn, stagger } from '~/lib/motion'
 import type { ContactInfo } from '~/types/cv'
 
 interface HeroSectionProps {
@@ -14,94 +14,207 @@ interface HeroSectionProps {
   contact: ContactInfo
 }
 
-function getNameParts(name: string) {
-  const parts = name.split(' ')
-  const last = parts.slice(-2).join(' ')
-  const first = parts.slice(0, -2).join(' ')
-  return { first, last }
-}
-
-const contactItems = (contact: ContactInfo) => [
-  { label: contact.email, href: `mailto:${contact.email}` },
-  { label: contact.phone, href: `tel:${contact.phone}` },
-  { label: contact.location, href: undefined },
-  { label: 'github/ChiVi123', href: contact.github },
-]
-
 export function HeroSection({ name, tagline, available, contact }: HeroSectionProps) {
-  const { first, last } = getNameParts(name)
+  const nameParts = name.split(' ')
+  const lastName = nameParts.slice(-2).join(' ')
+  const firstName = nameParts.slice(0, -2).join(' ')
+
+  const contactItems = [
+    { icon: <MailIcon size={16} />, label: contact.email, href: `mailto:${contact.email}` },
+    { icon: <PhoneIcon />, label: contact.phone, href: `tel:${contact.phone}` },
+    { icon: <LocationIcon />, label: contact.location },
+    { icon: <GithubIcon />, label: 'ChiVi123', href: contact.github },
+  ]
+
+  const scrollToProjects = () => document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth' })
+  const scrollToContact = () => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
 
   return (
-    <motion.header
-      className="border-b-[1.5px] border-foreground pb-10 pt-14"
-      initial="hidden"
-      animate="show"
-      variants={staggerContainer}
-    >
-      {/* Eyebrow */}
-      <motion.p
-        className="mb-4 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-(--warm-accent)"
-        variants={fadeSide}
+    <section id="hero" className="hero">
+      <motion.div
+        initial="hidden"
+        animate="show"
+        variants={stagger(0.09, 0.1)}
+        style={{ display: 'flex', flexDirection: 'column' }}
       >
-        <span className="h-px w-6 bg-(--warm-accent)" />
-        Portfolio · Front-end Developer
-      </motion.p>
+        {/* Available badge */}
+        {available && (
+          <motion.div className="hero__badge" variants={fadeUp}>
+            <div className="hero__badge-dot">
+              <div className="hero__badge-dot-inner" />
+              <div className="hero__badge-dot-pulse" />
+            </div>
+            <span className="hero__badge-text">Available for work · 2025</span>
+          </motion.div>
+        )}
 
-      {/* Name — SplitText cho first name, GlitchText cho last name */}
-      <h1
-        className="leading-[0.92] tracking-tight"
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(2.6rem, 9vw, 5.4rem)',
-          fontWeight: 800,
-          letterSpacing: '-0.03em',
-        }}
-      >
-        <SplitText text={first} className="block text-foreground" stagger={0.04} delay={0.1} />
-        <span className="block text-(--warm-accent)">
-          <GlitchText text={last} mode="hover" speed={35} iterations={10} />
-        </span>
-      </h1>
+        {/* Subtitle */}
+        <motion.div className="hero__subtitle" variants={fadeUp}>
+          <Typewriter text="// Front-end Developer" delay={400} />
+        </motion.div>
 
-      {/* Tagline */}
-      <motion.p
-        className="mt-3 text-muted-foreground"
-        style={{
-          fontFamily: 'var(--font-display)',
-          fontSize: 'clamp(0.95rem, 2.2vw, 1.2rem)',
-        }}
-        variants={fadeUp}
-      >
-        {tagline}
-      </motion.p>
-
-      {/* Bar — contacts + available badge */}
-      <motion.div className="mt-8 flex flex-wrap items-center justify-between gap-4" variants={fadeUp}>
-        <div className="flex flex-wrap gap-2">
-          {contactItems(contact).map((item) => (
-            <Magnet key={item.label} strength={0.25}>
-              <a
-                href={item.href}
-                target={item.href?.startsWith('http') ? '_blank' : undefined}
-                rel="noreferrer"
-                className="inline-block rounded-full border border-border bg-secondary px-3 py-1.5 font-mono text-[11px] text-secondary-foreground transition-colors hover:bg-foreground hover:text-background hover:border-transparent"
-              >
-                {item.label}
-              </a>
-            </Magnet>
-          ))}
+        {/* Name */}
+        <div className="hero__name-block">
+          <motion.span className="hero__first-name" variants={heroLine}>
+            {firstName}
+          </motion.span>
+          <motion.span className="hero__last-name" variants={heroLine}>
+            <GlitchText text={lastName} />
+          </motion.span>
         </div>
 
-        {available && (
-          <div className="flex items-center gap-2 font-mono text-[11px] text-(--warm-accent)">
-            <span className="relative flex size-2">
-              <span className="absolute inline-flex size-full animate-ping rounded-full bg-(--warm-accent) opacity-60" />
-              <span className="relative inline-flex size-2 rounded-full bg-(--warm-accent)" />
-            </span>
-            Open to work · 2025
-          </div>
-        )}
+        {/* Tagline */}
+        <motion.p className="hero__tagline" variants={fadeUp}>
+          {tagline}
+        </motion.p>
+
+        {/* Contact pills */}
+        <motion.div className="hero__pills" variants={stagger(0.06, 0)}>
+          {contactItems.map(({ icon, label, href }) => (
+            <motion.a
+              key={label}
+              href={href}
+              target={href?.startsWith('http') ? '_blank' : undefined}
+              rel="noreferrer"
+              className="hero__pill"
+              style={{ cursor: href ? 'pointer' : 'default' }}
+              variants={scaleIn}
+              whileHover={{ borderColor: 'var(--accent)', color: 'var(--accent)', y: -2 }}
+              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+            >
+              <span className="hero__pill-icon">{icon}</span>
+              {label}
+            </motion.a>
+          ))}
+        </motion.div>
+
+        {/* CTA buttons */}
+        <motion.div className="hero__ctas" variants={fadeUp}>
+          <motion.button
+            onClick={scrollToProjects}
+            className="hero__btn-primary"
+            whileHover={{ scale: 1.03, boxShadow: 'var(--accent-glow)' }}
+            whileTap={{ scale: 0.97 }}
+          >
+            View Projects
+          </motion.button>
+          <motion.button
+            onClick={scrollToContact}
+            className="hero__btn-secondary"
+            whileHover={{ scale: 1.03, background: 'var(--accent-dim)' }}
+            whileTap={{ scale: 0.97 }}
+          >
+            Contact Me
+          </motion.button>
+        </motion.div>
       </motion.div>
-    </motion.header>
+
+      {/* Scroll indicator */}
+      <motion.div
+        className="hero__scroll"
+        onClick={scrollToProjects}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 2.2, duration: 0.9 }}
+      >
+        <motion.div
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 3, repeat: Number.POSITIVE_INFINITY, ease: 'easeInOut' }}
+          style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6 }}
+        >
+          <span className="hero__scroll-text">Scroll</span>
+          <ChevronDownIcon />
+        </motion.div>
+      </motion.div>
+
+      <style>{`
+        .hero {
+          min-height: 100vh;
+          display: flex; flex-direction: column; justify-content: center;
+          padding-top: 80px; position: relative;
+        }
+        .hero__badge {
+          display: flex; align-items: center; gap: 10px; margin-bottom: 32px;
+        }
+        .hero__badge-dot {
+          position: relative; width: 10px; height: 10px;
+        }
+        .hero__badge-dot-inner {
+          width: 10px; height: 10px; border-radius: 50%;
+          background: var(--green); position: absolute;
+        }
+        .hero__badge-dot-pulse {
+          width: 10px; height: 10px; border-radius: 50%;
+          background: var(--green); position: absolute;
+          animation: pulse-ring 1.5s ease-out infinite;
+        }
+        .hero__badge-text {
+          font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+          color: var(--green); font-family: var(--font-mono);
+        }
+        .hero__subtitle {
+          font-size: 13px; letter-spacing: 0.3em; text-transform: uppercase;
+          color: var(--text-muted); margin-bottom: 12px; font-family: var(--font-mono);
+        }
+        .hero__name-block {
+          display: flex; flex-direction: column;
+          margin-bottom: 20px; overflow: hidden;
+        }
+        .hero__first-name {
+          font-family: var(--font-display); font-weight: 700;
+          font-size: clamp(48px, 10vw, 100px);
+          line-height: 0.92; letter-spacing: -0.04em;
+          color: var(--text); display: block;
+        }
+        .hero__last-name {
+          font-family: var(--font-display); font-weight: 700;
+          font-size: clamp(48px, 10vw, 100px);
+          line-height: 0.92; letter-spacing: -0.04em;
+          color: var(--accent); display: block;
+          text-shadow: var(--accent-glow);
+        }
+        .hero__tagline {
+          font-size: clamp(14px, 2vw, 18px); color: var(--text-muted);
+          max-width: 520px; line-height: 1.7; margin-bottom: 40px;
+          font-family: var(--font-display); font-weight: 400;
+        }
+        .hero__pills {
+          display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 48px;
+        }
+        .hero__pill {
+          display: flex; align-items: center; gap: 8px;
+          padding: 8px 14px; border-radius: 6px;
+          border: 1px solid var(--border); color: var(--text-muted);
+          font-size: 12px; background: var(--accent-dim);
+          font-family: var(--font-mono); transition: border-color 0.2s, color 0.2s;
+        }
+        .hero__pill-icon { color: var(--accent); display: flex; }
+        .hero__ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+        .hero__btn-primary {
+          background: var(--accent); color: #000; border: none;
+          padding: 12px 28px; border-radius: 6px; font-family: var(--font-mono);
+          font-size: 13px; font-weight: 600; cursor: pointer;
+          letter-spacing: 0.08em; text-transform: uppercase;
+        }
+        .hero__btn-secondary {
+          background: transparent; color: var(--accent);
+          border: 1px solid var(--border-hover);
+          padding: 12px 28px; border-radius: 6px; font-family: var(--font-mono);
+          font-size: 13px; font-weight: 600; cursor: pointer;
+          letter-spacing: 0.08em; text-transform: uppercase;
+        }
+        .hero__scroll {
+          position: absolute; bottom: 40px; left: 50%;
+          transform: translateX(-50%);
+          display: flex; flex-direction: column; align-items: center; gap: 6px;
+          color: var(--text-dim); cursor: pointer;
+        }
+        .hero__scroll-text {
+          font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em;
+          text-transform: uppercase;
+        }
+        @media (max-width: 640px) { .hero__scroll { display: none; } }
+      `}</style>
+    </section>
   )
 }

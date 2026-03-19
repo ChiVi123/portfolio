@@ -1,72 +1,62 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { Badge } from '~/components/ui/badge'
-import { SectionWrapper } from '~/components/ui/section-wrapper'
-import { fadeUp, fadeSide } from '~/lib/motion'
-import type { Education, SkillGroup } from '~/types/cv'
+import { SectionLabel } from '~/components/ui/section-label'
+import { MotionSection } from '~/components/ui/motion-section'
+import { fadeUp, scaleIn, stagger } from '~/lib/motion'
+import type { SkillGroup } from '~/types/cv'
 
 interface SkillsSectionProps {
-  about: string
   skills: SkillGroup[]
-  education: Education[]
 }
 
-const BADGE_VARIANT = {
-  accent: 'default',
-  solid: 'secondary',
-  outline: 'outline',
-} as const
-
-export function SkillsSection({ about, skills, education }: SkillsSectionProps) {
+export function SkillsSection({ skills }: SkillsSectionProps) {
   return (
-    <>
-      <SectionWrapper id="about" label="About">
-        <motion.p className="text-[13.5px] leading-[1.8] text-muted-foreground" variants={fadeUp}>
-          {about}
-        </motion.p>
-      </SectionWrapper>
+    <MotionSection id="skills" className="portfolio-section">
+      <SectionLabel index="02" title="Skills" />
 
-      <SectionWrapper id="skills" label="Skills">
+      <motion.div className="skills-grid" variants={stagger(0.07, 0.1)} style={{ marginTop: 40 }}>
         {skills.map(({ group, items }) => (
-          <div key={group} className="mb-4 last:mb-0">
-            <motion.p
-              className="mb-2 font-mono text-[9.5px] uppercase tracking-[0.14em] text-muted-foreground"
-              variants={fadeSide}
-            >
-              {group}
-            </motion.p>
-            <div className="flex flex-wrap gap-1.5">
-              {items.map(({ label, variant }) => (
-                <motion.div
+          <motion.div
+            key={group}
+            className="card"
+            variants={fadeUp}
+            whileHover={{ y: -3, borderColor: 'var(--border-hover)', transition: { type: 'spring', stiffness: 400, damping: 28 } }}
+          >
+            <div className="card__label">{group}</div>
+            <motion.div className="skills-chips" variants={stagger(0.04)}>
+              {items.map(({ label }) => (
+                <motion.span
                   key={label}
-                  variants={fadeUp}
-                  whileHover={{ scale: 1.07, transition: { duration: 0.12 } }}
+                  className="skill-chip"
+                  variants={scaleIn}
+                  whileHover={{
+                    borderColor: 'var(--accent)',
+                    color: 'var(--accent)',
+                    scale: 1.05,
+                    transition: { type: 'spring', stiffness: 500, damping: 25 },
+                  }}
                 >
-                  <Badge
-                    variant={BADGE_VARIANT[variant]}
-                    className="cursor-default font-mono text-[10.5px]"
-                  >
-                    {label}
-                  </Badge>
-                </motion.div>
+                  {label}
+                </motion.span>
               ))}
-            </div>
-          </div>
-        ))}
-      </SectionWrapper>
-
-      <SectionWrapper label="Education">
-        {education.map((edu) => (
-          <motion.div key={edu.school} variants={fadeUp}>
-            <p className="font-display text-[13.5px] font-bold text-foreground" style={{ fontFamily: 'var(--font-display)' }}>
-              {edu.school}
-            </p>
-            <p className="mt-0.5 text-[12px] text-foreground/80">{edu.degree}</p>
-            <p className="mt-0.5 font-mono text-[10px] text-muted-foreground">{edu.period}</p>
+            </motion.div>
           </motion.div>
         ))}
-      </SectionWrapper>
-    </>
+      </motion.div>
+
+      <style>{`
+        .skills-grid {
+          display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px;
+        }
+        .skills-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+        .skill-chip {
+          padding: 5px 12px; border: 1px solid var(--border); border-radius: 4px;
+          font-size: 12px; color: var(--text-muted); background: var(--accent-dim);
+          font-family: var(--font-mono); cursor: default; display: inline-block;
+        }
+        @media (max-width: 768px) { .skills-grid { grid-template-columns: 1fr; } }
+      `}</style>
+    </MotionSection>
   )
 }

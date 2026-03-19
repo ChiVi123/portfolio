@@ -1,85 +1,76 @@
 @import 'tailwindcss';
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=DM+Mono:ital,wght@0,300;0,400;1,300&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 
 /* ─── Tailwind v4 custom theme ───────────────────────────── */
 @theme {
-  --font-sans: 'DM Mono', monospace;
-  --font-display: 'Syne', sans-serif;
-  --font-mono: 'DM Mono', monospace;
-
-  /* Amber/warm accent palette */
-  --color-accent-50: oklch(0.97 0.03 80);
-  --color-accent-100: oklch(0.93 0.07 75);
-  --color-accent-200: oklch(0.87 0.12 72);
-  --color-accent-400: oklch(0.75 0.16 68);
-  --color-accent-500: oklch(0.67 0.17 65);
-  --color-accent-600: oklch(0.58 0.16 62);
-  --color-accent-900: oklch(0.28 0.08 58);
+  --font-sans: 'JetBrains Mono', 'Fira Code', monospace;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 }
 
-/* ─── Shadcn CSS Variables (light) ──────────────────────── */
+/* ─── CSS Variables (dark) ───────────────────────────────── */
 :root {
-  --background: oklch(0.97 0.01 80);
-  --foreground: oklch(0.12 0.01 60);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.12 0.01 60);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.12 0.01 60);
-  --primary: oklch(0.67 0.17 65);
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.93 0.02 75);
-  --secondary-foreground: oklch(0.2 0.01 60);
-  --muted: oklch(0.93 0.02 75);
-  --muted-foreground: oklch(0.5 0.03 65);
-  --accent: oklch(0.67 0.17 65);
-  --accent-foreground: oklch(0.98 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.9 0.01 75);
-  --input: oklch(0.9 0.01 75);
-  --ring: oklch(0.67 0.17 65);
-  --radius: 0.5rem;
+  --bg: #080c10;
+  --bg-card: #0d1117;
+  --bg-card-hover: #111820;
+  --bg-nav: rgba(8, 12, 16, 0.85);
+  --border: rgba(0, 240, 255, 0.15);
+  --border-hover: rgba(0, 240, 255, 0.5);
+  --text: #e8f4f8;
+  --text-muted: #5a7a8a;
+  --text-dim: #2a4a5a;
+  --accent: #00f0ff;
+  --accent-dim: rgba(0, 240, 255, 0.08);
+  --accent-glow: 0 0 20px rgba(0, 240, 255, 0.3);
+  --green: #00ff88;
+  --dot-color: rgba(0, 240, 255, 0.12);
 
-  /* Portfolio custom tokens */
-  --ink: oklch(0.12 0.01 60);
-  --ink-2: oklch(0.28 0.02 62);
-  --paper: oklch(0.97 0.01 80);
-  --paper-2: oklch(0.94 0.02 78);
-  --paper-3: oklch(0.91 0.02 76);
-  --warm-accent: oklch(0.67 0.17 65);
-  --warm-accent-dim: oklch(0.80 0.12 70);
-  --muted-text: oklch(0.52 0.03 65);
+  /* shadcn compat */
+  --background: #080c10;
+  --foreground: #e8f4f8;
+  --card: #0d1117;
+  --card-foreground: #e8f4f8;
+  --primary: #00f0ff;
+  --primary-foreground: #000;
+  --secondary: #111820;
+  --secondary-foreground: #e8f4f8;
+  --muted: #111820;
+  --muted-foreground: #5a7a8a;
+  --border: rgba(0, 240, 255, 0.15);
+  --input: rgba(0, 240, 255, 0.08);
+  --ring: #00f0ff;
+  --radius: 0.5rem;
 }
 
-/* ─── Shadcn CSS Variables (dark) ───────────────────────── */
-.dark {
-  --background: oklch(0.10 0.01 60);
-  --foreground: oklch(0.93 0.01 75);
-  --card: oklch(0.13 0.01 62);
-  --card-foreground: oklch(0.93 0.01 75);
-  --popover: oklch(0.13 0.01 62);
-  --popover-foreground: oklch(0.93 0.01 75);
-  --primary: oklch(0.75 0.16 68);
-  --primary-foreground: oklch(0.12 0.01 60);
-  --secondary: oklch(0.18 0.01 62);
-  --secondary-foreground: oklch(0.93 0.01 75);
-  --muted: oklch(0.18 0.01 62);
-  --muted-foreground: oklch(0.55 0.03 65);
-  --accent: oklch(0.75 0.16 68);
-  --accent-foreground: oklch(0.12 0.01 60);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(0.93 0.01 75 / 0.1);
-  --input: oklch(0.93 0.01 75 / 0.12);
-  --ring: oklch(0.75 0.16 68);
+.light {
+  --bg: #f0f4f8;
+  --bg-card: #ffffff;
+  --bg-card-hover: #f8fafc;
+  --bg-nav: rgba(240, 244, 248, 0.85);
+  --border: rgba(0, 100, 200, 0.15);
+  --border-hover: rgba(0, 100, 200, 0.5);
+  --text: #0d1117;
+  --text-muted: #64748b;
+  --text-dim: #94a3b8;
+  --accent: #0066cc;
+  --accent-dim: rgba(0, 102, 204, 0.08);
+  --accent-glow: none;
+  --green: #059669;
+  --dot-color: rgba(0, 100, 200, 0.08);
 
-  /* Portfolio custom tokens — dark */
-  --ink: oklch(0.93 0.01 75);
-  --ink-2: oklch(0.78 0.02 70);
-  --paper: oklch(0.10 0.01 60);
-  --paper-2: oklch(0.14 0.01 62);
-  --paper-3: oklch(0.18 0.01 62);
-  --warm-accent: oklch(0.75 0.16 68);
-  --warm-accent-dim: oklch(0.62 0.13 65);
-  --muted-text: oklch(0.52 0.03 65);
+  --background: #f0f4f8;
+  --foreground: #0d1117;
+  --card: #ffffff;
+  --card-foreground: #0d1117;
+  --primary: #0066cc;
+  --primary-foreground: #fff;
+  --secondary: #f8fafc;
+  --secondary-foreground: #0d1117;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --border: rgba(0, 100, 200, 0.15);
+  --input: rgba(0, 100, 200, 0.08);
+  --ring: #0066cc;
 }
 
 /* ─── Base ───────────────────────────────────────────────── */
@@ -96,20 +87,111 @@ html {
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: var(--bg);
+  color: var(--text);
   font-family: var(--font-sans);
   min-height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+::selection {
+  background: rgba(0, 240, 255, 0.25);
+}
+
+/* ─── Dot grid background ────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-image: radial-gradient(circle, var(--dot-color) 1px, transparent 1px);
+  background-size: 28px 28px;
+  pointer-events: none;
+}
+
+/* ─── Scan lines overlay ─────────────────────────────────── */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.03) 2px,
+    rgba(0, 0, 0, 0.03) 4px
+  );
 }
 
 /* ─── Scrollbar ──────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--paper); }
-::-webkit-scrollbar-thumb { background: var(--warm-accent); border-radius: 2px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
 /* ─── Focus ──────────────────────────────────────────────── */
 :focus-visible {
-  outline: 2px solid var(--ring);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
   border-radius: 3px;
+}
+
+/* ─── Selection ──────────────────────────────────────────── */
+a { text-decoration: none; color: inherit; }
+
+/* ─── Animations ─────────────────────────────────────────── */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(2.2); opacity: 0; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-6px); }
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Shared section & card styles ──────────────────────── */
+.portfolio-section { margin-bottom: 100px; }
+
+.card {
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-card);
+}
+
+.card--hover { transition: all 0.25s; }
+.card--hover:hover {
+  border-color: var(--border-hover);
+  background: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+
+.card__label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+  font-family: var(--font-mono);
+}
+
+@keyframes glitch-anim {
+  0% { clip-path: inset(40% 0 61% 0); transform: skew(0.3deg); }
+  20% { clip-path: inset(92% 0 1% 0); transform: skew(0.8deg); }
+  40% { clip-path: inset(43% 0 1% 0); transform: skew(0.2deg); }
+  60% { clip-path: inset(25% 0 58% 0); transform: skew(0.5deg); }
+  80% { clip-path: inset(54% 0 7% 0); transform: skew(0.1deg); }
+  100% { clip-path: inset(58% 0 43% 0); transform: skew(0.4deg); }
 }
