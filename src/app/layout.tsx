@@ -30,7 +30,15 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${beVietnamPro.variable} ${jetBrainsMono.variable}`}>
-      <body>{children}</body>
+      <body>
+        <script
+          // biome-ignore lint/security/noDangerouslySetInnerHtml: prevent flash of wrong theme
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem('theme');if(t==='light')document.documentElement.classList.add('light')}catch(e){}})()`,
+          }}
+        />
+        {children}
+      </body>
     </html>
   )
 }

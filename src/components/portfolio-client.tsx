@@ -18,11 +18,18 @@ export function PortfolioClient({ cv }: PortfolioClientProps) {
   const [isDark, setIsDark] = useState(true)
 
   useEffect(() => {
+    const stored = localStorage.getItem('theme')
+    if (stored === 'light') setIsDark(false)
+  }, [])
+
+  useEffect(() => {
     const html = document.documentElement
     if (isDark) {
       html.classList.remove('light')
+      localStorage.setItem('theme', 'dark')
     } else {
       html.classList.add('light')
+      localStorage.setItem('theme', 'light')
     }
   }, [isDark])
 
