@@ -163,15 +163,17 @@ export function HeroSection({ name, tagline, available, contact }: HeroSectionPr
         .hero__first-name {
           font-family: var(--font-display); font-weight: 700;
           font-size: clamp(48px, 10vw, 100px);
-          line-height: 0.92; letter-spacing: -0.04em;
+          line-height: 0.92; letter-spacing: -0.01em;
           color: var(--text); display: block;
+          padding-top: 14px;
         }
         .hero__last-name {
           font-family: var(--font-display); font-weight: 700;
           font-size: clamp(48px, 10vw, 100px);
-          line-height: 0.92; letter-spacing: -0.04em;
+          line-height: 0.92; letter-spacing: -0.01em;
           color: var(--accent); display: block;
           text-shadow: var(--accent-glow);
+          padding-top: 14px;
         }
         .hero__tagline {
           font-size: clamp(14px, 2vw, 18px); color: var(--text-muted);

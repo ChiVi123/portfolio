@@ -1,11 +1,10 @@
-@import 'tailwindcss';
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import "tailwindcss";
 
 /* ─── Tailwind v4 custom theme ───────────────────────────── */
 @theme {
-  --font-sans: 'JetBrains Mono', 'Fira Code', monospace;
-  --font-display: 'Space Grotesk', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: var(--font-mono);
+  --font-display: var(--font-display);
+  --font-mono: var(--font-mono);
 }
 
 /* ─── CSS Variables (dark) ───────────────────────────────── */
@@ -100,7 +99,7 @@ body {
 
 /* ─── Dot grid background ────────────────────────────────── */
 body::before {
-  content: '';
+  content: "";
   position: fixed;
   inset: 0;
   z-index: 0;
@@ -111,7 +110,7 @@ body::before {
 
 /* ─── Scan lines overlay ─────────────────────────────────── */
 body::after {
-  content: '';
+  content: "";
   position: fixed;
   inset: 0;
   z-index: 9999;
@@ -126,9 +125,16 @@ body::after {
 }
 
 /* ─── Scrollbar ──────────────────────────────────────────── */
-::-webkit-scrollbar { width: 4px; }
-::-webkit-scrollbar-track { background: var(--bg); }
-::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 2px;
+}
 
 /* ─── Focus ──────────────────────────────────────────────── */
 :focus-visible {
@@ -138,31 +144,58 @@ body::after {
 }
 
 /* ─── Selection ──────────────────────────────────────────── */
-a { text-decoration: none; color: inherit; }
+a {
+  text-decoration: none;
+  color: inherit;
+}
 
 /* ─── Animations ─────────────────────────────────────────── */
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 @keyframes pulse-ring {
-  0% { transform: scale(1); opacity: 1; }
-  100% { transform: scale(2.2); opacity: 0; }
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2.2);
+    opacity: 0;
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateX(-50%) translateY(0); }
-  50% { transform: translateX(-50%) translateY(-6px); }
+  0%,
+  100% {
+    transform: translateX(-50%) translateY(0);
+  }
+  50% {
+    transform: translateX(-50%) translateY(-6px);
+  }
 }
 
 @keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* ─── Shared section & card styles ──────────────────────── */
-.portfolio-section { margin-bottom: 100px; }
+.portfolio-section {
+  margin-bottom: 100px;
+}
 
 .card {
   padding: 28px;
@@ -171,7 +204,9 @@ a { text-decoration: none; color: inherit; }
   background: var(--bg-card);
 }
 
-.card--hover { transition: all 0.25s; }
+.card--hover {
+  transition: all 0.25s;
+}
 .card--hover:hover {
   border-color: var(--border-hover);
   background: var(--bg-card-hover);
@@ -188,10 +223,28 @@ a { text-decoration: none; color: inherit; }
 }
 
 @keyframes glitch-anim {
-  0% { clip-path: inset(40% 0 61% 0); transform: skew(0.3deg); }
-  20% { clip-path: inset(92% 0 1% 0); transform: skew(0.8deg); }
-  40% { clip-path: inset(43% 0 1% 0); transform: skew(0.2deg); }
-  60% { clip-path: inset(25% 0 58% 0); transform: skew(0.5deg); }
-  80% { clip-path: inset(54% 0 7% 0); transform: skew(0.1deg); }
-  100% { clip-path: inset(58% 0 43% 0); transform: skew(0.4deg); }
+  0% {
+    clip-path: inset(40% 0 61% 0);
+    transform: skew(0.3deg);
+  }
+  20% {
+    clip-path: inset(92% 0 1% 0);
+    transform: skew(0.8deg);
+  }
+  40% {
+    clip-path: inset(43% 0 1% 0);
+    transform: skew(0.2deg);
+  }
+  60% {
+    clip-path: inset(25% 0 58% 0);
+    transform: skew(0.5deg);
+  }
+  80% {
+    clip-path: inset(54% 0 7% 0);
+    transform: skew(0.1deg);
+  }
+  100% {
+    clip-path: inset(58% 0 43% 0);
+    transform: skew(0.4deg);
+  }
 }
