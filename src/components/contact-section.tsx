@@ -1,9 +1,9 @@
 'use client'
 
 import { motion } from 'framer-motion'
-import { SectionLabel } from '~/components/ui/section-label'
-import { MotionSection } from '~/components/ui/motion-section'
 import { GithubIcon, MailIcon } from '~/components/ui/icons'
+import { MotionSection } from '~/components/ui/motion-section'
+import { SectionLabel } from '~/components/ui/section-label'
 import { fadeUp, scaleIn, stagger } from '~/lib/motion'
 
 interface ContactSectionProps {
@@ -32,13 +32,10 @@ export function ContactSection({ email, github }: ContactSectionProps) {
             scale: [1, 1.15, 1],
             opacity: [0.6, 1, 0.6],
           }}
-          transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+          transition={{ duration: 4, repeat: Number.POSITIVE_INFINITY, ease: 'easeInOut' }}
         />
 
-        <motion.div
-          className="contact-card__inner"
-          variants={stagger(0.1, 0.15)}
-        >
+        <motion.div className="contact-card__inner" variants={stagger(0.1, 0.15)}>
           <motion.div className="contact-card__eyebrow" variants={scaleIn}>
             Get in touch
           </motion.div>
@@ -60,7 +57,9 @@ export function ContactSection({ email, github }: ContactSectionProps) {
               <MailIcon size={16} /> Send Email
             </motion.a>
             <motion.a
-              href={github} target="_blank" rel="noreferrer"
+              href={github}
+              target="_blank"
+              rel="noreferrer"
               className="contact-btn contact-btn--secondary"
               variants={scaleIn}
               whileHover={{ scale: 1.04, background: 'var(--accent-dim)' }}

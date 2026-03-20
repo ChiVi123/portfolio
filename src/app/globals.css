@@ -3,8 +3,6 @@
 /* ─── Tailwind v4 custom theme ───────────────────────────── */
 @theme {
   --font-sans: var(--font-mono);
-  --font-display: var(--font-display);
-  --font-mono: var(--font-mono);
 }
 
 /* ─── CSS Variables (dark) ───────────────────────────────── */
@@ -35,7 +33,6 @@
   --secondary-foreground: #e8f4f8;
   --muted: #111820;
   --muted-foreground: #5a7a8a;
-  --border: rgba(0, 240, 255, 0.15);
   --input: rgba(0, 240, 255, 0.08);
   --ring: #00f0ff;
   --radius: 0.5rem;
@@ -67,17 +64,15 @@
   --secondary-foreground: #0d1117;
   --muted: #f1f5f9;
   --muted-foreground: #64748b;
-  --border: rgba(0, 100, 200, 0.15);
   --input: rgba(0, 100, 200, 0.08);
   --ring: #0066cc;
 }
 
 /* ─── Base ───────────────────────────────────────────────── */
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  border-color: var(--border);
 }
 
 html {
@@ -143,7 +138,6 @@ body::after {
   border-radius: 3px;
 }
 
-/* ─── Selection ──────────────────────────────────────────── */
 a {
   text-decoration: none;
   color: inherit;
@@ -171,57 +165,6 @@ a {
   }
 }
 
-@keyframes float {
-  0%,
-  100% {
-    transform: translateX(-50%) translateY(0);
-  }
-  50% {
-    transform: translateX(-50%) translateY(-6px);
-  }
-}
-
-@keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-/* ─── Shared section & card styles ──────────────────────── */
-.portfolio-section {
-  margin-bottom: 100px;
-}
-
-.card {
-  padding: 28px;
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  background: var(--bg-card);
-}
-
-.card--hover {
-  transition: all 0.25s;
-}
-.card--hover:hover {
-  border-color: var(--border-hover);
-  background: var(--bg-card-hover);
-  transform: translateY(-2px);
-}
-
-.card__label {
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 18px;
-  font-family: var(--font-mono);
-}
-
 @keyframes glitch-anim {
   0% {
     clip-path: inset(40% 0 61% 0);
@@ -247,4 +190,25 @@ a {
     clip-path: inset(58% 0 43% 0);
     transform: skew(0.4deg);
   }
+}
+
+/* ─── Shared section & card styles ──────────────────────── */
+.portfolio-section {
+  margin-bottom: 100px;
+}
+
+.card {
+  padding: 28px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--bg-card);
+}
+
+.card__label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+  font-family: var(--font-mono);
 }
