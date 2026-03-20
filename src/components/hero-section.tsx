@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { GlitchText } from '~/components/bits/glitch-text'
+import { HeroTerminal } from '~/components/bits/hero-terminal'
 import { Typewriter } from '~/components/bits/typewriter'
 import { ChevronDownIcon, GithubIcon, LocationIcon, MailIcon, PhoneIcon } from '~/components/ui/icons'
 import { fadeUp, heroLine, scaleIn, stagger } from '~/lib/motion'
@@ -31,83 +32,91 @@ export function HeroSection({ name, tagline, available, contact }: HeroSectionPr
 
   return (
     <section id="hero" className="hero">
-      <motion.div
-        initial="hidden"
-        animate="show"
-        variants={stagger(0.09, 0.1)}
-        style={{ display: 'flex', flexDirection: 'column' }}
-      >
-        {/* Available badge */}
-        {available && (
-          <motion.div className="hero__badge" variants={fadeUp}>
-            <div className="hero__badge-dot">
-              <div className="hero__badge-dot-inner" />
-              <div className="hero__badge-dot-pulse" />
-            </div>
-            <span className="hero__badge-text">Available for work · 2025</span>
+      <div className="hero__layout">
+        {/* ── Left column: text content ── */}
+        <motion.div className="hero__content" initial="hidden" animate="show" variants={stagger(0.09, 0.1)}>
+          {/* Available badge */}
+          {available && (
+            <motion.div className="hero__badge" variants={fadeUp}>
+              <div className="hero__badge-dot">
+                <div className="hero__badge-dot-inner" />
+                <div className="hero__badge-dot-pulse" />
+              </div>
+              <span className="hero__badge-text">Available for work · 2025</span>
+            </motion.div>
+          )}
+
+          {/* Subtitle */}
+          <motion.div className="hero__subtitle" variants={fadeUp}>
+            <Typewriter text="// Front-end Developer" delay={400} />
           </motion.div>
-        )}
 
-        {/* Subtitle */}
-        <motion.div className="hero__subtitle" variants={fadeUp}>
-          <Typewriter text="// Front-end Developer" delay={400} />
-        </motion.div>
+          {/* Name */}
+          <div className="hero__name-block">
+            <motion.span className="hero__first-name" variants={heroLine}>
+              {firstName}
+            </motion.span>
+            <motion.span className="hero__last-name" variants={heroLine}>
+              <GlitchText text={lastName} />
+            </motion.span>
+          </div>
 
-        {/* Name */}
-        <div className="hero__name-block">
-          <motion.span className="hero__first-name" variants={heroLine}>
-            {firstName}
-          </motion.span>
-          <motion.span className="hero__last-name" variants={heroLine}>
-            <GlitchText text={lastName} />
-          </motion.span>
-        </div>
+          {/* Tagline */}
+          <motion.p className="hero__tagline" variants={fadeUp}>
+            {tagline}
+          </motion.p>
 
-        {/* Tagline */}
-        <motion.p className="hero__tagline" variants={fadeUp}>
-          {tagline}
-        </motion.p>
+          {/* Contact pills */}
+          <motion.div className="hero__pills" variants={stagger(0.06, 0)}>
+            {contactItems.map(({ icon, label, href }) => (
+              <motion.a
+                key={label}
+                href={href}
+                target={href?.startsWith('http') ? '_blank' : undefined}
+                rel="noreferrer"
+                className="hero__pill"
+                style={{ cursor: href ? 'pointer' : 'default' }}
+                variants={scaleIn}
+                whileHover={{ borderColor: 'var(--accent)', color: 'var(--accent)', y: -2 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+              >
+                <span className="hero__pill-icon">{icon}</span>
+                {label}
+              </motion.a>
+            ))}
+          </motion.div>
 
-        {/* Contact pills */}
-        <motion.div className="hero__pills" variants={stagger(0.06, 0)}>
-          {contactItems.map(({ icon, label, href }) => (
-            <motion.a
-              key={label}
-              href={href}
-              target={href?.startsWith('http') ? '_blank' : undefined}
-              rel="noreferrer"
-              className="hero__pill"
-              style={{ cursor: href ? 'pointer' : 'default' }}
-              variants={scaleIn}
-              whileHover={{ borderColor: 'var(--accent)', color: 'var(--accent)', y: -2 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+          {/* CTA buttons */}
+          <motion.div className="hero__ctas" variants={fadeUp}>
+            <motion.button
+              onClick={scrollToProjects}
+              className="hero__btn-primary"
+              whileHover={{ scale: 1.03, boxShadow: 'var(--accent-glow)' }}
+              whileTap={{ scale: 0.97 }}
             >
-              <span className="hero__pill-icon">{icon}</span>
-              {label}
-            </motion.a>
-          ))}
+              View Projects
+            </motion.button>
+            <motion.button
+              onClick={scrollToContact}
+              className="hero__btn-secondary"
+              whileHover={{ scale: 1.03, background: 'var(--accent-dim)' }}
+              whileTap={{ scale: 0.97 }}
+            >
+              Contact Me
+            </motion.button>
+          </motion.div>
         </motion.div>
 
-        {/* CTA buttons */}
-        <motion.div className="hero__ctas" variants={fadeUp}>
-          <motion.button
-            onClick={scrollToProjects}
-            className="hero__btn-primary"
-            whileHover={{ scale: 1.03, boxShadow: 'var(--accent-glow)' }}
-            whileTap={{ scale: 0.97 }}
-          >
-            View Projects
-          </motion.button>
-          <motion.button
-            onClick={scrollToContact}
-            className="hero__btn-secondary"
-            whileHover={{ scale: 1.03, background: 'var(--accent-dim)' }}
-            whileTap={{ scale: 0.97 }}
-          >
-            Contact Me
-          </motion.button>
+        {/* ── Right column: terminal (hidden on mobile) ── */}
+        <motion.div
+          className="hero__terminal-col"
+          initial={{ opacity: 0, x: 40 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.0, ease: [0.16, 1, 0.3, 1], delay: 0.6 }}
+        >
+          <HeroTerminal />
         </motion.div>
-      </motion.div>
+      </div>
 
       {/* Scroll indicator */}
       <motion.div
@@ -130,9 +139,47 @@ export function HeroSection({ name, tagline, available, contact }: HeroSectionPr
       <style>{`
         .hero {
           min-height: 100vh;
-          display: flex; flex-direction: column; justify-content: center;
-          padding-top: 80px; position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          padding-top: 80px;
+          position: relative;
         }
+
+        /* ── 2-column layout ── */
+        .hero__layout {
+          display: grid;
+          grid-template-columns: 1fr;
+          align-items: center;
+          gap: 48px;
+        }
+
+        @media (min-width: 1024px) {
+          .hero__layout {
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+          }
+        }
+
+        /* Hide terminal on small screens */
+        .hero__terminal-col {
+          display: none;
+        }
+
+        @media (min-width: 1024px) {
+          .hero__terminal-col {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+        }
+
+        /* ── Left column ── */
+        .hero__content {
+          display: flex;
+          flex-direction: column;
+        }
+
         .hero__badge {
           display: flex; align-items: center; gap: 10px; margin-bottom: 32px;
         }
@@ -162,22 +209,22 @@ export function HeroSection({ name, tagline, available, contact }: HeroSectionPr
         }
         .hero__first-name {
           font-family: var(--font-display); font-weight: 700;
-          font-size: clamp(48px, 10vw, 100px);
+          font-size: clamp(40px, 7vw, 88px);
           line-height: 0.92; letter-spacing: -0.01em;
           color: var(--text); display: block;
           padding-top: 14px;
         }
         .hero__last-name {
           font-family: var(--font-display); font-weight: 700;
-          font-size: clamp(48px, 10vw, 100px);
+          font-size: clamp(40px, 7vw, 88px);
           line-height: 0.92; letter-spacing: -0.01em;
           color: var(--accent); display: block;
           text-shadow: var(--accent-glow);
           padding-top: 14px;
         }
         .hero__tagline {
-          font-size: clamp(14px, 2vw, 18px); color: var(--text-muted);
-          max-width: 520px; line-height: 1.7; margin-bottom: 40px;
+          font-size: clamp(14px, 1.6vw, 17px); color: var(--text-muted);
+          max-width: 480px; line-height: 1.7; margin-bottom: 40px;
           font-family: var(--font-display); font-weight: 400;
         }
         .hero__pills {
