@@ -50,7 +50,7 @@ export function SkillsSection({ skills }: SkillsSectionProps) {
       <style>{`
         .skill-chip {
           padding: 5px 12px; border: 1px solid var(--border); border-radius: 4px;
-          font-size: 12px; color: var(--text-muted); background: var(--accent-dim);
+          font-size: 13px; color: var(--text-muted); background: var(--accent-dim);
           font-family: var(--font-mono); cursor: default; display: inline-block;
         }
       `}</style>

@@ -47,7 +47,7 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
               {exp.bullets.map((bullet, i) => (
                 <motion.li
                   key={i + bullet}
-                  className="flex gap-3 text-[13px] leading-relaxed"
+                  className="flex gap-3 text-[14px] leading-relaxed"
                   style={{ color: 'var(--text-muted)', fontFamily: 'var(--font-display)' }}
                   variants={fadeUp}
                 >
@@ -68,13 +68,13 @@ export function ExperienceSection({ experience }: ExperienceSectionProps) {
           background: var(--accent); border-radius: 10px 0 0 10px;
         }
         .exp-card__title {
-          font-family: var(--font-display); font-weight: 600; font-size: 18px; color: var(--text);
+          font-family: var(--font-display); font-weight: 600; font-size: 19px; color: var(--text);
         }
         .exp-card__company {
-          color: var(--accent); font-size: 13px; margin-top: 4px; font-family: var(--font-mono);
+          color: var(--accent); font-size: 14px; margin-top: 4px; font-family: var(--font-mono);
         }
         .exp-card__period {
-          font-size: 11px; color: var(--text-dim); font-family: var(--font-mono);
+          font-size: 12px; color: var(--text-dim); font-family: var(--font-mono);
           border: 1px solid var(--border); padding: 4px 10px; border-radius: 4px; flex-shrink: 0;
         }
       `}</style>

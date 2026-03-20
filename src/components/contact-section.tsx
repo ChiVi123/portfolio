@@ -85,7 +85,7 @@ export function ContactSection({ email, github }: ContactSectionProps) {
         }
         .contact-card__inner { position: relative; z-index: 1; }
         .contact-card__eyebrow {
-          font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+          font-size: 12px; letter-spacing: 0.3em; text-transform: uppercase;
           color: var(--accent); margin-bottom: 16px; font-family: var(--font-mono);
           display: inline-block;
         }
@@ -95,7 +95,7 @@ export function ContactSection({ email, github }: ContactSectionProps) {
           line-height: 1.1; margin-bottom: 16px; letter-spacing: -0.02em;
         }
         .contact-card__body {
-          font-size: 14px; color: var(--text-muted); max-width: 420px;
+          font-size: 15px; color: var(--text-muted); max-width: 420px;
           margin: 0 auto 40px; line-height: 1.8; font-family: var(--font-display);
         }
         .contact-card__actions {
@@ -104,7 +104,7 @@ export function ContactSection({ email, github }: ContactSectionProps) {
         .contact-btn {
           display: flex; align-items: center; gap: 8px;
           padding: 14px 28px; border-radius: 6px; font-family: var(--font-mono);
-          font-size: 13px; font-weight: 600; letter-spacing: 0.08em;
+          font-size: 14px; font-weight: 600; letter-spacing: 0.08em;
           text-transform: uppercase;
         }
         .contact-btn--primary { background: var(--accent); color: #000; border: none; }

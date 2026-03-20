@@ -57,11 +57,11 @@ export function PortfolioClient({ cv }: PortfolioClientProps) {
           className="border-t py-7 flex justify-between items-center flex-wrap gap-3"
           style={{ borderColor: 'var(--border)' }}
         >
-          <span className="font-bold text-[15px]" style={{ fontFamily: 'var(--font-display)', color: 'var(--text)' }}>
+          <span className="font-bold text-[16px]" style={{ fontFamily: 'var(--font-display)', color: 'var(--text)' }}>
             {cv.name}
           </span>
           <span
-            className="text-[11px] tracking-widest"
+            className="text-[12px] tracking-widest"
             style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-dim)' }}
           >
             Front-end Developer · HCM City · 2025

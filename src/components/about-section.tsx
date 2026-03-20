@@ -64,7 +64,7 @@ export function AboutSection({ about, education }: AboutSectionProps) {
 
       <style>{`
         .about-bio {
-          font-size: 14px; line-height: 1.9; color: var(--text-muted);
+          font-size: 15px; line-height: 1.9; color: var(--text-muted);
           font-family: var(--font-display);
         }
         .about-edu {
@@ -73,23 +73,23 @@ export function AboutSection({ about, education }: AboutSectionProps) {
           border: 1px solid var(--border);
         }
         .about-edu__label {
-          font-size: 11px; color: var(--text-dim); letter-spacing: 0.15em;
+          font-size: 12px; color: var(--text-dim); letter-spacing: 0.15em;
           text-transform: uppercase; margin-bottom: 10px; font-family: var(--font-mono);
         }
         .about-edu__school {
-          font-family: var(--font-display); font-size: 14px; font-weight: 600; color: var(--text);
+          font-family: var(--font-display); font-size: 15px; font-weight: 600; color: var(--text);
         }
-        .about-edu__fullname { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
-        .about-edu__degree { font-size: 12px; color: var(--accent); margin-top: 4px; }
+        .about-edu__fullname { font-size: 13px; color: var(--text-muted); margin-top: 2px; }
+        .about-edu__degree { font-size: 13px; color: var(--accent); margin-top: 4px; }
         .about-edu__period {
-          font-size: 11px; color: var(--text-dim); margin-top: 2px; font-family: var(--font-mono);
+          font-size: 12px; color: var(--text-dim); margin-top: 2px; font-family: var(--font-mono);
         }
         .about-fact__label {
-          font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+          font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
           color: var(--text-dim); font-family: var(--font-mono);
         }
         .about-fact__value {
-          font-size: 13px; color: var(--text);
+          font-size: 14px; color: var(--text);
           font-family: var(--font-display); font-weight: 500;
         }
         .about-fact__value--accent { color: var(--accent); font-family: var(--font-mono); }

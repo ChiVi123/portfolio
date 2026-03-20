@@ -126,13 +126,13 @@ function ProjectCard({ project }: { project: Project }) {
           position: relative; z-index: 1;
         }
         .proj-card__name {
-          font-family: var(--font-display); font-weight: 700; font-size: 18px; color: var(--text);
+          font-family: var(--font-display); font-weight: 700; font-size: 19px; color: var(--text);
         }
         .proj-card__period {
-          font-size: 11px; color: var(--text-dim); font-family: var(--font-mono); margin-top: 4px;
+          font-size: 12px; color: var(--text-dim); font-family: var(--font-mono); margin-top: 4px;
         }
         .proj-card__desc {
-          font-size: 13px; color: var(--text-muted); line-height: 1.7;
+          font-size: 14px; color: var(--text-muted); line-height: 1.7;
           font-family: var(--font-display); flex-grow: 1; position: relative; z-index: 1;
         }
         .proj-card__stack {
@@ -140,7 +140,7 @@ function ProjectCard({ project }: { project: Project }) {
         }
         .proj-chip {
           padding: 3px 9px; border: 1px solid var(--border); border-radius: 4px;
-          font-size: 11px; color: var(--text-dim); background: var(--accent-dim);
+          font-size: 12px; color: var(--text-dim); background: var(--accent-dim);
           font-family: var(--font-mono); cursor: default; display: inline-block;
         }
         .proj-card__links {
@@ -148,7 +148,7 @@ function ProjectCard({ project }: { project: Project }) {
           border-top: 1px solid var(--border); position: relative; z-index: 1;
         }
         .proj-link {
-          display: flex; align-items: center; gap: 6px; font-size: 12px;
+          display: flex; align-items: center; gap: 6px; font-size: 13px;
           padding: 6px 12px; border-radius: 5px; font-family: var(--font-mono);
         }
         .proj-link--primary { color: var(--accent); border: 1px solid var(--border-hover); }
@@ -221,7 +221,7 @@ function OGPreview({ og, demoUrl }: { og: OGMeta; demoUrl?: string }) {
           display: flex; align-items: center; gap: 5px;
           background: rgba(0,240,255,0.12); border: 1px solid rgba(0,240,255,0.25);
           border-radius: 4px; padding: 3px 8px;
-          color: var(--accent); font-size: 10px; font-family: var(--font-mono);
+          color: var(--accent); font-size: 11px; font-family: var(--font-mono);
           letter-spacing: 0.05em; backdrop-filter: blur(4px);
         }
         .og-preview__meta {
@@ -230,7 +230,7 @@ function OGPreview({ og, demoUrl }: { og: OGMeta; demoUrl?: string }) {
           background: var(--bg-card);
         }
         .og-preview__title {
-          font-size: 11px; color: var(--text-dim); font-family: var(--font-mono);
+          font-size: 12px; color: var(--text-dim); font-family: var(--font-mono);
           white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;
         }
       `}</style>
@@ -261,11 +261,11 @@ function OGDescriptionQuote({ description, siteName }: { description: string; si
         }
         .og-quote__content { display: flex; flex-direction: column; gap: 2px; }
         .og-quote__source {
-          font-size: 10px; color: var(--accent); font-family: var(--font-mono);
+          font-size: 11px; color: var(--accent); font-family: var(--font-mono);
           letter-spacing: 0.1em; text-transform: uppercase; opacity: 0.7;
         }
         .og-quote__text {
-          font-size: 11px; color: var(--text-dim); font-family: var(--font-display);
+          font-size: 12px; color: var(--text-dim); font-family: var(--font-display);
           line-height: 1.6; font-style: italic;
         }
       `}</style>

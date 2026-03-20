@@ -149,11 +149,11 @@ export function HeroSection({ name, tagline, available, contact }: HeroSectionPr
           animation: pulse-ring 1.5s ease-out infinite;
         }
         .hero__badge-text {
-          font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+          font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
           color: var(--green); font-family: var(--font-mono);
         }
         .hero__subtitle {
-          font-size: 13px; letter-spacing: 0.3em; text-transform: uppercase;
+          font-size: 14px; letter-spacing: 0.3em; text-transform: uppercase;
           color: var(--text-muted); margin-bottom: 12px; font-family: var(--font-mono);
         }
         .hero__name-block {
@@ -187,7 +187,7 @@ export function HeroSection({ name, tagline, available, contact }: HeroSectionPr
           display: flex; align-items: center; gap: 8px;
           padding: 8px 14px; border-radius: 6px;
           border: 1px solid var(--border); color: var(--text-muted);
-          font-size: 12px; background: var(--accent-dim);
+          font-size: 13px; background: var(--accent-dim);
           font-family: var(--font-mono); transition: border-color 0.2s, color 0.2s;
         }
         .hero__pill-icon { color: var(--accent); display: flex; }
@@ -195,14 +195,14 @@ export function HeroSection({ name, tagline, available, contact }: HeroSectionPr
         .hero__btn-primary {
           background: var(--accent); color: #000; border: none;
           padding: 12px 28px; border-radius: 6px; font-family: var(--font-mono);
-          font-size: 13px; font-weight: 600; cursor: pointer;
+          font-size: 14px; font-weight: 600; cursor: pointer;
           letter-spacing: 0.08em; text-transform: uppercase;
         }
         .hero__btn-secondary {
           background: transparent; color: var(--accent);
           border: 1px solid var(--border-hover);
           padding: 12px 28px; border-radius: 6px; font-family: var(--font-mono);
-          font-size: 13px; font-weight: 600; cursor: pointer;
+          font-size: 14px; font-weight: 600; cursor: pointer;
           letter-spacing: 0.08em; text-transform: uppercase;
         }
         .hero__scroll {
@@ -212,7 +212,7 @@ export function HeroSection({ name, tagline, available, contact }: HeroSectionPr
           color: var(--text-dim); cursor: pointer;
         }
         .hero__scroll-text {
-          font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.2em;
+          font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.2em;
           text-transform: uppercase;
         }
         @media (max-width: 640px) { .hero__scroll { display: none; } }
