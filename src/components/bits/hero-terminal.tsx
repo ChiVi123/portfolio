@@ -24,7 +24,7 @@ const TERMINAL_LINES: Line[] = [
   { type: 'output', text: 'c7e8f10  feat: mern-blog fullstack', delay: 3800, speed: 18 },
   { type: 'blank', text: '', delay: 4000, speed: 0 },
   { type: 'cmd', text: 'echo $STATUS', delay: 4100, speed: 55 },
-  { type: 'output', text: '● AVAILABLE FOR WORK · 2025', delay: 4600, speed: 22 },
+  { type: 'output', text: '● AVAILABLE FOR WORK · now', delay: 4600, speed: 22 },
 ]
 
 function useTypedLines(lines: Line[]) {

@@ -42,7 +42,7 @@ export function HeroSection({ name, tagline, available, contact }: HeroSectionPr
                 <div className="hero__badge-dot-inner" />
                 <div className="hero__badge-dot-pulse" />
               </div>
-              <span className="hero__badge-text">Available for work · 2025</span>
+              <span className="hero__badge-text">Available for work · {new Date().getFullYear()}</span>
             </motion.div>
           )}
 

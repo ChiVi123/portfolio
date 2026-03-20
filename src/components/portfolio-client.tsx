@@ -71,7 +71,7 @@ export function PortfolioClient({ cv }: PortfolioClientProps) {
             className="text-[12px] tracking-widest"
             style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-dim)' }}
           >
-            Front-end Developer · HCM City · 2025
+            Front-end Developer · HCM City · {new Date().getFullYear()}
           </span>
         </footer>
       </main>
