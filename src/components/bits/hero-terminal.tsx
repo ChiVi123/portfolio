@@ -28,7 +28,6 @@ const TERMINAL_LINES: Line[] = [
 ]
 
 function useTypedLines(lines: Line[]) {
-  // Each entry: null = not started, string = current typed text, true = done
   const [state, setState] = useState<(string | true | null)[]>(lines.map(() => null))
 
   useEffect(() => {
@@ -51,7 +50,6 @@ function useTypedLines(lines: Line[]) {
       const speed = line.speed ?? 35
       let charIdx = 0
 
-      // Start the line
       timers.push(
         setTimeout(() => {
           setState((prev) => {
@@ -60,7 +58,6 @@ function useTypedLines(lines: Line[]) {
             return next
           })
 
-          // Type each character
           const typeNext = () => {
             charIdx++
             const typed = line.text.slice(0, charIdx)
@@ -95,7 +92,6 @@ function useTypedLines(lines: Line[]) {
 
 export function HeroTerminal() {
   const typed = useTypedLines(TERMINAL_LINES)
-  // Blink cursor on the currently-typing line
   const activeIdx = typed.findLastIndex((s) => s !== null && s !== true)
 
   return (
@@ -112,7 +108,7 @@ export function HeroTerminal() {
       <div className="ht-body">
         {TERMINAL_LINES.map((line, idx) => {
           const value = typed[idx]
-          if (value === null) return null // not started yet
+          if (value === null) return null
 
           const displayText = value === true ? line.text : value
           const isTyping = value !== true && activeIdx === idx
@@ -133,7 +129,6 @@ export function HeroTerminal() {
           )
         })}
 
-        {/* Idle blinking cursor after all done */}
         {typed.every((s) => s === true || s === null) && typed[typed.length - 1] === true && (
           <div className="ht-line ht-line--cmd">
             <span className="ht-prompt">❯&nbsp;</span>
@@ -143,6 +138,7 @@ export function HeroTerminal() {
       </div>
 
       <style>{`
+        /* ── Dark mode (default) ─────────────────────────── */
         .ht-root {
           width: 100%;
           max-width: 480px;
@@ -150,9 +146,13 @@ export function HeroTerminal() {
           border: 1px solid var(--border);
           background: rgba(8, 12, 16, 0.92);
           backdrop-filter: blur(16px);
-          box-shadow: 0 0 0 1px rgba(0,240,255,0.06), 0 24px 60px rgba(0,0,0,0.6), var(--accent-glow);
+          box-shadow:
+            0 0 0 1px rgba(0,240,255,0.06),
+            0 24px 60px rgba(0,0,0,0.6),
+            var(--accent-glow);
           overflow: hidden;
           font-family: var(--font-mono);
+          position: relative;
         }
 
         .ht-titlebar {
@@ -196,8 +196,9 @@ export function HeroTerminal() {
           white-space: pre;
         }
 
-        .ht-line--cmd    { color: var(--text); }
-        .ht-line--output { color: var(--text-muted); }
+        /* Dark: cmd = sáng, output = muted */
+        .ht-line--cmd    { color: #e8f4f8; }
+        .ht-line--output { color: #5a7a8a; }
 
         .ht-prompt {
           color: var(--accent);
@@ -211,8 +212,7 @@ export function HeroTerminal() {
           flex-shrink: 0;
         }
 
-        .ht-text { }
-        .ht-text--green { color: var(--green); }
+        .ht-text--green { color: #00ff88; }
 
         .ht-blank { height: 8px; }
 
@@ -223,16 +223,14 @@ export function HeroTerminal() {
           margin-left: 1px;
         }
 
-        .ht-cursor--idle {
-          opacity: 1;
-        }
+        .ht-cursor--idle { opacity: 1; }
 
         @keyframes ht-blink {
           0%, 100% { opacity: 1; }
           50%       { opacity: 0; }
         }
 
-        /* Scanline overlay inside terminal */
+        /* Scanline overlay — chỉ hiện dark mode */
         .ht-body::after {
           content: '';
           position: absolute;
@@ -248,7 +246,54 @@ export function HeroTerminal() {
           border-radius: inherit;
         }
 
-        .ht-root { position: relative; }
+        /* ── Light mode overrides ────────────────────────── */
+        :global(.light) .ht-root {
+          background: #1a1f2e;
+          border-color: rgba(0, 100, 200, 0.25);
+          box-shadow:
+            0 0 0 1px rgba(0, 100, 200, 0.08),
+            0 8px 32px rgba(0, 0, 0, 0.18),
+            0 2px 8px rgba(0, 0, 0, 0.12);
+        }
+
+        :global(.light) .ht-titlebar {
+          background: rgba(0, 0, 0, 0.15);
+          border-bottom-color: rgba(255, 255, 255, 0.08);
+        }
+
+        :global(.light) .ht-title {
+          color: rgba(255, 255, 255, 0.4);
+        }
+
+        :global(.light) .ht-line--cmd {
+          color: #e2e8f0;
+        }
+
+        :global(.light) .ht-line--output {
+          color: #94a3b8;
+        }
+
+        :global(.light) .ht-prompt {
+          color: #60a5fa;
+        }
+
+        :global(.light) .ht-cursor {
+          color: #60a5fa;
+        }
+
+        :global(.light) .ht-text--green {
+          color: #4ade80;
+        }
+
+        :global(.light) .ht-body::after {
+          background: repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 2px,
+            rgba(255,255,255,0.012) 2px,
+            rgba(255,255,255,0.012) 4px
+          );
+        }
       `}</style>
     </div>
   )
