@@ -43,7 +43,7 @@ export function ContactSection({ email, github }: ContactSectionProps) {
             Let's Build Something
           </motion.h2>
           <motion.p className="contact-card__body" variants={fadeUp}>
-            Open to internship opportunities, freelance projects, and collaborations. Let's talk.
+            Open to Front-end, Back-end and Full-stack roles, freelance projects, and collaborations. Let's talk.
           </motion.p>
 
           <motion.div className="contact-card__actions" variants={stagger(0.08)}>

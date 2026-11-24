@@ -18,11 +18,13 @@ const jetBrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Nguyễn Hoàng Chí Vĩ — Front-end Developer',
-  description: 'Portfolio of Nguyễn Hoàng Chí Vĩ — Front-end Developer specialising in React and Next.js.',
+  title: 'Nguyễn Hoàng Chí Vĩ — Front-end / Full-stack Developer',
+  description:
+    'Portfolio of Nguyễn Hoàng Chí Vĩ — Front-end / Full-stack Developer building with React, Next.js and NestJS.',
   openGraph: {
-    title: 'Nguyễn Hoàng Chí Vĩ — Front-end Developer',
-    description: 'Portfolio of Nguyễn Hoàng Chí Vĩ — Front-end Developer specialising in React and Next.js.',
+    title: 'Nguyễn Hoàng Chí Vĩ — Front-end / Full-stack Developer',
+    description:
+      'Portfolio of Nguyễn Hoàng Chí Vĩ — Front-end / Full-stack Developer building with React, Next.js and NestJS.',
     type: 'website',
   },
 }

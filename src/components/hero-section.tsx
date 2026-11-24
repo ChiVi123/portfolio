@@ -10,12 +10,13 @@ import type { ContactInfo } from '~/types/cv'
 
 interface HeroSectionProps {
   name: string
+  role: string
   tagline: string
   available: boolean
   contact: ContactInfo
 }
 
-export function HeroSection({ name, tagline, available, contact }: HeroSectionProps) {
+export function HeroSection({ name, role, tagline, available, contact }: HeroSectionProps) {
   const nameParts = name.split(' ')
   const lastName = nameParts.slice(-2).join(' ')
   const firstName = nameParts.slice(0, -2).join(' ')
@@ -48,7 +49,7 @@ export function HeroSection({ name, tagline, available, contact }: HeroSectionPr
 
           {/* Subtitle */}
           <motion.div className="hero__subtitle" variants={fadeUp}>
-            <Typewriter text="// Front-end Developer" delay={400} />
+            <Typewriter text={`// ${role}`} delay={400} />
           </motion.div>
 
           {/* Name */}

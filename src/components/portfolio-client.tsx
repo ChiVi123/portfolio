@@ -43,7 +43,7 @@ export function PortfolioClient({ cv }: PortfolioClientProps) {
       />
 
       <main className="relative z-10 max-w-275 mx-auto px-6">
-        <HeroSection name={cv.name} tagline={cv.tagline} available={cv.available} contact={cv.contact} />
+        <HeroSection name={cv.name} role={cv.role} tagline={cv.tagline} available={cv.available} contact={cv.contact} />
 
         <div
           className="h-px mb-20"
@@ -71,7 +71,7 @@ export function PortfolioClient({ cv }: PortfolioClientProps) {
             className="text-[12px] tracking-widest"
             style={{ fontFamily: 'var(--font-mono)', color: 'var(--text-dim)' }}
           >
-            Front-end Developer · HCM City · {new Date().getFullYear()}
+            {cv.role} · HCM City · {new Date().getFullYear()}
           </span>
         </footer>
       </main>

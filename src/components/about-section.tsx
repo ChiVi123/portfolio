@@ -12,10 +12,10 @@ interface AboutSectionProps {
 }
 
 const QUICK_FACTS = [
-  { label: 'Current Status', value: 'Interning @ FPT Software', accent: true },
-  { label: 'Primary Stack', value: 'TypeScript · React · Next.js' },
+  { label: 'Current Status', value: 'Open to Front-end / Full-stack roles', accent: true },
+  { label: 'Primary Stack', value: 'TypeScript · React · Next.js · NestJS' },
   { label: 'Location', value: 'Ho Chi Minh City, Vietnam' },
-  { label: 'Focus', value: 'High-quality, optimised web products' },
+  { label: 'Focus', value: 'UI quality, secure APIs, clean codebase' },
 ]
 
 const HOVER_SPRING = { type: 'spring', stiffness: 400, damping: 28 } as const

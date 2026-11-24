@@ -17,14 +17,15 @@ const TERMINAL_LINES: Line[] = [
   { type: 'output', text: '"TypeScript"  ✓', delay: 1900, speed: 25 },
   { type: 'output', text: '"React"       ✓', delay: 2150, speed: 25 },
   { type: 'output', text: '"Next.js"     ✓', delay: 2400, speed: 25 },
-  { type: 'blank', text: '', delay: 2600, speed: 0 },
-  { type: 'cmd', text: 'git log --oneline -3', delay: 2700, speed: 40 },
-  { type: 'output', text: 'a3f1c2e  feat: internship @ FPT', delay: 3300, speed: 18 },
-  { type: 'output', text: '9b2d441  feat: pha-phim streaming', delay: 3550, speed: 18 },
-  { type: 'output', text: 'c7e8f10  feat: mern-blog fullstack', delay: 3800, speed: 18 },
-  { type: 'blank', text: '', delay: 4000, speed: 0 },
-  { type: 'cmd', text: 'echo $STATUS', delay: 4100, speed: 55 },
-  { type: 'output', text: '● AVAILABLE FOR WORK · now', delay: 4600, speed: 22 },
+  { type: 'output', text: '"NestJS"      ✓', delay: 2650, speed: 25 },
+  { type: 'blank', text: '', delay: 2850, speed: 0 },
+  { type: 'cmd', text: 'git log --oneline -3', delay: 2950, speed: 40 },
+  { type: 'output', text: 'a3f1c2e  feat: blog-app next + nest', delay: 3550, speed: 18 },
+  { type: 'output', text: '9b2d441  feat: pha-phim streaming', delay: 3800, speed: 18 },
+  { type: 'output', text: 'c7e8f10  feat: mern-blog fullstack', delay: 4050, speed: 18 },
+  { type: 'blank', text: '', delay: 4250, speed: 0 },
+  { type: 'cmd', text: 'echo $STATUS', delay: 4350, speed: 55 },
+  { type: 'output', text: '● AVAILABLE FOR WORK · now', delay: 4850, speed: 22 },
 ]
 
 function useTypedLines(lines: Line[]) {
